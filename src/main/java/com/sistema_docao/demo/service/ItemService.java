@@ -18,6 +18,14 @@ public class ItemService {
 
     public void registrar(ItemCadastroRequestDTO dto){
         Item item = new Item();
+
+        boolean existe = itemRepository.existsByNomeAndTipo(dto.nome(), dto.tipo());
+        if(existe){
+            throw new IllegalArgumentException(
+                    "Já existe um item com nome '" + dto.nome() + "' e tipo '" + dto.tipo() + "'."
+            );
+        }
+
         item.setNome(dto.nome());
         item.setTipo(dto.tipo());
         item.setQuantidadeEstoque(dto.quantidadeEstoque());
