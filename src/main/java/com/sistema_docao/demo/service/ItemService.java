@@ -18,7 +18,6 @@ public class ItemService {
 
     public void registrar(ItemCadastroRequestDTO dto){
         Item item = new Item();
-
         item.setNome(dto.nome());
         item.setTipo(dto.tipo());
         item.setQuantidadeEstoque(dto.quantidadeEstoque());
