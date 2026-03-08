@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ItemService {
@@ -16,6 +17,7 @@ public class ItemService {
     private ItemRepository itemRepository;
 
 
+    @Transactional
     public void registrar(ItemCadastroRequestDTO dto){
         Item item = new Item();
 
@@ -48,6 +50,7 @@ public class ItemService {
 
     }
 
+    @Transactional
     public void excluir(Long id){
         Item item = itemRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Item nao encontrado" + id));

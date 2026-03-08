@@ -20,6 +20,7 @@ public class DoadorService {
     @Autowired
     private DoadorRepository doadorRepository;
 
+    @Transactional
     public void register(DoadorCadastroRequestDTO dto){
 
         Doador doador = new Doador();
@@ -65,6 +66,7 @@ public class DoadorService {
     }
 
 
+    @Transactional
     public void excluir(Long id){
         Doador doador = doadorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Doador não encontrado"));
