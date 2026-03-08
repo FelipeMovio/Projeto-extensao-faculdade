@@ -31,4 +31,11 @@ public class DoadorController {
 
         return ResponseEntity.ok(dto);
     }
+
+    @GetMapping("/{id}")
+    public  ResponseEntity<DoadorReadResponseDTO> verUm(@PathVariable Long id ){
+        DoadorReadResponseDTO dto = doadorService.getOne(id);
+
+        return ResponseEntity.ok(dto);
+    }
 }
