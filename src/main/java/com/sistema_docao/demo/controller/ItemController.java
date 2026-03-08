@@ -40,4 +40,12 @@ public class ItemController {
         return ResponseEntity.ok(dto);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id){
+
+        itemService.excluir(id);
+
+        return ResponseEntity.noContent().build();
+    }
+
 }
