@@ -47,4 +47,11 @@ public class DoadorController {
 
         return ResponseEntity.ok(readResponseDTO);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluir(@PathVariable Long id ){
+        doadorService.excluir(id);
+
+        return ResponseEntity.noContent().build();
+    }
 }
