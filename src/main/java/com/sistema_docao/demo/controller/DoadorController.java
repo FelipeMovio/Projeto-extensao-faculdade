@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/doadores")
 public class DoadorController {
 
-    @Autowired
-    private DoadorService doadorService;
 
+    private final DoadorService doadorService;
+
+    public DoadorController(DoadorService doadorService) {
+        this.doadorService = doadorService;
+    }
 
     @PostMapping
     public ResponseEntity<Void> cadastrar(@Valid @RequestBody DoadorCadastroRequestDTO dto){

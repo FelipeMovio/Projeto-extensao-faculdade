@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/itens")
 public class ItemController {
 
-    @Autowired
-    private ItemService itemService;
 
+    private final ItemService itemService;
+
+    public ItemController(ItemService itemService) {
+        this.itemService = itemService;
+    }
 
     @PostMapping
     public ResponseEntity<Void> criar(@RequestBody @Valid ItemCadastroRequestDTO dto){
