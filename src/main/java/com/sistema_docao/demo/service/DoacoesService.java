@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class DoacoesService {
@@ -37,8 +39,17 @@ public class DoacoesService {
         doacao.setDoador(doador);
 
         List<DoacaoItem> itensDoacao = new ArrayList<>();
+        Set<Long> itensProcessados = new HashSet<>();
 
         for (var itemDTO : dto.itens()) {
+
+            if (itemDTO.quantidade() <= 0) {
+                throw new IllegalArgumentException("Quantidade deve ser maior que zero");
+            }
+
+            if (!itensProcessados.add(itemDTO.itemId())) {
+                throw new IllegalArgumentException("Item duplicado na doação: " + itemDTO.itemId());
+            }
 
 
             Item item = itemRepository.findById(itemDTO.itemId())
