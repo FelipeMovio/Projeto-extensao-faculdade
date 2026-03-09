@@ -1,6 +1,10 @@
 package com.sistema_docao.demo.controller;
 
+import com.sistema_docao.demo.dto.request.DoacaoCadastroRequestDTO;
 import com.sistema_docao.demo.service.DoacoesService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,6 +16,13 @@ public class DoacoesController {
 
     public DoacoesController (DoacoesService doacoesService){
         this.doacoesService = doacoesService;
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> doar(@RequestBody DoacaoCadastroRequestDTO dto){
+        doacoesService.registrarDoacao(dto);
+
+
     }
 
 }
