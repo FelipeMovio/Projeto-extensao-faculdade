@@ -17,8 +17,12 @@ import java.util.Optional;
 @Service
 public class DoadorService {
 
-    @Autowired
-    private DoadorRepository doadorRepository;
+
+    private final DoadorRepository doadorRepository;
+
+    public DoadorService(DoadorRepository doadorRepository) {
+        this.doadorRepository = doadorRepository;
+    }
 
     @Transactional
     public void register(DoadorCadastroRequestDTO dto){
