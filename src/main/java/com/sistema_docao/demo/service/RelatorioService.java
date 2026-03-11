@@ -1,6 +1,8 @@
 package com.sistema_docao.demo.service;
 
+import com.sistema_docao.demo.dto.RelatorioItemDTO;
 import com.sistema_docao.demo.entity.Doacao;
+import com.sistema_docao.demo.entity.DoacaoItem;
 import com.sistema_docao.demo.repository.DoacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,19 +15,35 @@ import java.util.Map;
 @Service
 public class RelatorioService {
 
-    @Autowired
-    private DoacaoRepository doacaoRepository;
+    private final DoacaoRepository repository;
 
-    public Map<String, Integer> gerarResumo(LocalDate inicio, LocalDate fim) {
+    public RelatorioService(DoacaoRepository repository) {
+        this.repository = repository;
+    }
 
-        List<Doacao> doacoes = doacaoRepository.findByDataDoacaoBetween(inicio, fim);
+    public List<RelatorioItemDTO> gerarRelatorio(LocalDate inicio, LocalDate fim) {
+
+        List<Doacao> doacoes = repository.findByDataCriacaoBetween(inicio, fim);
 
         Map<String, Integer> resumo = new HashMap<>();
 
-        for (Doacao d : doacoes) {
-            resumo.merge(d.getTipoItem(), d.getQuantidade(), Integer::sum);
+        for (Doacao doacao : doacoes) {
+
+            for (DoacaoItem item : doacao.getItens()) {
+
+                String tipo = item.getItem().getNome(); // depende da sua entidade Item
+                Integer quantidade = item.getQuantidade();
+
+                resumo.merge(tipo, quantidade, Integer::sum);
+            }
         }
 
-        return resumo;
+        return resumo.entrySet()
+                .stream()
+                .map(e -> new RelatorioItemDTO(
+                        e.getKey(),
+                        e.getValue()
+                ))
+                .toList();
     }
 }
