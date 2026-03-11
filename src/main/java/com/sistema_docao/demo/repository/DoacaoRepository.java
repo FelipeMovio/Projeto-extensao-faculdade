@@ -16,6 +16,6 @@ public interface DoacaoRepository extends JpaRepository<Doacao, Long> {
     })
     List<Doacao> findAll();
 
-    List<Doacao> findByDataDoacaoBetween(LocalDate inicio, LocalDate fim);
+    List<Doacao> findByDataCriacaoBetween(LocalDate inicio, LocalDate fim);
 
 }
