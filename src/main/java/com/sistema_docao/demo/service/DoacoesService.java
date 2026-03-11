@@ -23,14 +23,20 @@ import java.util.Set;
 @Service
 public class DoacoesService {
 
-    @Autowired
-    private DoacaoRepository doacaoRepository;
 
-    @Autowired
-    private DoadorRepository doadorRepository;
+    private final DoacaoRepository doacaoRepository;
 
-    @Autowired
-    private ItemRepository itemRepository;
+
+    private final DoadorRepository doadorRepository;
+
+
+    private final ItemRepository itemRepository;
+
+    public DoacoesService(DoacaoRepository doacaoRepository, DoadorRepository doadorRepository, ItemRepository itemRepository) {
+        this.doacaoRepository = doacaoRepository;
+        this.doadorRepository = doadorRepository;
+        this.itemRepository = itemRepository;
+    }
 
     @Transactional
     public void registrarDoacao(DoacaoCadastroRequestDTO dto) {
