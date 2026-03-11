@@ -1,4 +1,7 @@
 package com.sistema_docao.demo.dto;
 
-public record RelatorioItemDTO() {
+public record RelatorioItemDTO(
+        String tipoItem,
+        Integer quantidadeTotal
+) {
 }
