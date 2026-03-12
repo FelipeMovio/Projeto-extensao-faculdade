@@ -31,7 +31,7 @@ public class RelatorioService {
 
             for (DoacaoItem item : doacao.getItens()) {
 
-                String tipo = item.getItem().getNome(); // depende da sua entidade Item
+                String tipo = item.getItem().getTipo().name(); // depende da sua entidade Item
                 Integer quantidade = item.getQuantidade();
 
                 resumo.merge(tipo, quantidade, Integer::sum);
