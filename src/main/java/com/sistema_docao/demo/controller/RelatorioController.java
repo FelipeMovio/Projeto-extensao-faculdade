@@ -44,4 +44,18 @@ public class RelatorioController {
                 .header("Content-Type", "text/csv")
                 .body(csv);
     }
+
+    @GetMapping("/mensal/pdf")
+    public ResponseEntity<byte[]> gerarPDF(
+            @RequestParam LocalDate inicio,
+            @RequestParam LocalDate fim
+    ) throws Exception {
+
+        byte[] pdf = service.gerarRelatorioPDF(inicio, fim);
+
+        return ResponseEntity.ok()
+                .header("Content-Disposition", "attachment; filename=relatorio.pdf")
+                .header("Content-Type", "application/pdf")
+                .body(pdf);
+    }
 }
