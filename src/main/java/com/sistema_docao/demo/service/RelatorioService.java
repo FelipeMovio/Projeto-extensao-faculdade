@@ -46,4 +46,22 @@ public class RelatorioService {
                 ))
                 .toList();
     }
+
+    public String gerarRelatorioCSV(LocalDate inicio, LocalDate fim) {
+
+        List<RelatorioItemDTO> relatorio = gerarRelatorio(inicio, fim);
+
+        StringBuilder csv = new StringBuilder();
+
+        csv.append("Tipo,Quantidade\n");
+
+        for (RelatorioItemDTO item : relatorio) {
+            csv.append(item.tipoItem())
+                    .append(",")
+                    .append(item.quantidadeTotal())
+                    .append("\n");
+        }
+
+        return csv.toString();
+    }
 }
