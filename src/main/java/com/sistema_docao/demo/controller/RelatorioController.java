@@ -30,4 +30,18 @@ public class RelatorioController {
 
         return ResponseEntity.ok(dtosList);
     }
+
+    @GetMapping("/mensal/csv")
+    public ResponseEntity<String> gerarCSV(
+            @RequestParam LocalDate inicio,
+            @RequestParam LocalDate fim
+    ) {
+
+        String csv = service.gerarRelatorioCSV(inicio, fim);
+
+        return ResponseEntity.ok()
+                .header("Content-Disposition", "attachment; filename=relatorio.csv")
+                .header("Content-Type", "text/csv")
+                .body(csv);
+    }
 }
