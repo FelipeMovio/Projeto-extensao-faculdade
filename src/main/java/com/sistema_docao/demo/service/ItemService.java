@@ -1,10 +1,9 @@
 package com.sistema_docao.demo.service;
 
-import com.sistema_docao.demo.dto.request.ItemCadastroRequestDTO;
-import com.sistema_docao.demo.dto.response.ItemReadResponseDTO;
+import com.sistema_docao.demo.dto.sistema.request.ItemCadastroRequestDTO;
+import com.sistema_docao.demo.dto.sistema.response.ItemReadResponseDTO;
 import com.sistema_docao.demo.entity.Item;
 import com.sistema_docao.demo.repository.ItemRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

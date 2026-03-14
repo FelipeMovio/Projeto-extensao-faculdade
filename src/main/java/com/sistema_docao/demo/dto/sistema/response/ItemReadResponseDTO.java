@@ -1,7 +1,6 @@
-package com.sistema_docao.demo.dto.response;
+package com.sistema_docao.demo.dto.sistema.response;
 
-import com.sistema_docao.demo.dto.DoacaoItemResumoDTO;
-import com.sistema_docao.demo.entity.DoacaoItem;
+import com.sistema_docao.demo.dto.sistema.DoacaoItemResumoDTO;
 import com.sistema_docao.demo.entity.Item;
 import com.sistema_docao.demo.entity.TipoItem;
 

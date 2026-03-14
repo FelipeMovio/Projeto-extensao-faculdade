@@ -1,7 +1,7 @@
 package com.sistema_docao.demo.controller;
 
-import com.sistema_docao.demo.dto.request.DoacaoCadastroRequestDTO;
-import com.sistema_docao.demo.dto.response.DoacaoReadResponseDTO;
+import com.sistema_docao.demo.dto.sistema.request.DoacaoCadastroRequestDTO;
+import com.sistema_docao.demo.dto.sistema.response.DoacaoReadResponseDTO;
 import com.sistema_docao.demo.service.DoacoesService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

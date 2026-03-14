@@ -5,11 +5,10 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
-import com.sistema_docao.demo.dto.RelatorioItemDTO;
+import com.sistema_docao.demo.dto.sistema.RelatorioItemDTO;
 import com.sistema_docao.demo.entity.Doacao;
 import com.sistema_docao.demo.entity.DoacaoItem;
 import com.sistema_docao.demo.repository.DoacaoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;

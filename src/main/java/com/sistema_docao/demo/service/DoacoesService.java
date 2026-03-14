@@ -1,7 +1,7 @@
 package com.sistema_docao.demo.service;
 
-import com.sistema_docao.demo.dto.request.DoacaoCadastroRequestDTO;
-import com.sistema_docao.demo.dto.response.DoacaoReadResponseDTO;
+import com.sistema_docao.demo.dto.sistema.request.DoacaoCadastroRequestDTO;
+import com.sistema_docao.demo.dto.sistema.response.DoacaoReadResponseDTO;
 import com.sistema_docao.demo.entity.Doacao;
 import com.sistema_docao.demo.entity.DoacaoItem;
 import com.sistema_docao.demo.entity.Doador;
@@ -9,7 +9,6 @@ import com.sistema_docao.demo.entity.Item;
 import com.sistema_docao.demo.repository.DoacaoRepository;
 import com.sistema_docao.demo.repository.DoadorRepository;
 import com.sistema_docao.demo.repository.ItemRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

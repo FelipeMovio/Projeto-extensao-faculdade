@@ -1,10 +1,9 @@
 package com.sistema_docao.demo.controller;
 
-import com.sistema_docao.demo.dto.request.ItemCadastroRequestDTO;
-import com.sistema_docao.demo.dto.response.ItemReadResponseDTO;
+import com.sistema_docao.demo.dto.sistema.request.ItemCadastroRequestDTO;
+import com.sistema_docao.demo.dto.sistema.response.ItemReadResponseDTO;
 import com.sistema_docao.demo.service.ItemService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;

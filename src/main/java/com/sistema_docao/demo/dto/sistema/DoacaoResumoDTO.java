@@ -1,6 +1,6 @@
-package com.sistema_docao.demo.dto;
+package com.sistema_docao.demo.dto.sistema;
 
-import com.sistema_docao.demo.dto.response.DoadorMiniResponseDTO;
+import com.sistema_docao.demo.dto.sistema.response.DoadorMiniResponseDTO;
 
 import com.sistema_docao.demo.entity.Doacao;
 
