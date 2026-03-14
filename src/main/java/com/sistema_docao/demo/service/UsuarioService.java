@@ -37,7 +37,7 @@ public class UsuarioService {
                 .nome(dto.nome())
                 .email(dto.email())
                 .senha(passwordEncoder.encode(dto.senha()))
-                .roles(Set.of(Role.ROLE_USER))
+                .roles(Set.of(Role.ROLE_DOADOR))
                 .build();
 
         Usuario saved = usuarioRepository.save(newUser);
