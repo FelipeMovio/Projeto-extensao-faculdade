@@ -1,5 +1,8 @@
 package com.sistema_docao.demo.service;
 
+import com.sistema_docao.demo.dto.autenticacao.request.AdminCreateUserRequestDto;
+import com.sistema_docao.demo.dto.autenticacao.request.RegisterRequestDto;
+import com.sistema_docao.demo.dto.autenticacao.response.RegisterResponseDto;
 import com.sistema_docao.demo.entity.Role;
 import com.sistema_docao.demo.entity.Usuario;
 import com.sistema_docao.demo.repository.UsuarioRepository;
