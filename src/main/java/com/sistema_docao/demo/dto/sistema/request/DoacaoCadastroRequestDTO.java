@@ -1,4 +1,4 @@
-package com.sistema_docao.demo.dto.request;
+package com.sistema_docao.demo.dto.sistema.request;
 
 import java.util.List;
 

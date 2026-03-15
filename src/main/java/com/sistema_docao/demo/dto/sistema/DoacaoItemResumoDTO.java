@@ -1,4 +1,4 @@
-package com.sistema_docao.demo.dto;
+package com.sistema_docao.demo.dto.sistema;
 
 import com.sistema_docao.demo.entity.DoacaoItem;
 

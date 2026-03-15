@@ -21,10 +21,11 @@ public class Doador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
 
-    @Column(unique = true)
-    private String email;
+
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
 
     private String telefone;

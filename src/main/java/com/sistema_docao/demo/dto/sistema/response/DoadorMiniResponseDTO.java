@@ -1,4 +1,4 @@
-package com.sistema_docao.demo.dto.response;
+package com.sistema_docao.demo.dto.sistema.response;
 
 import com.sistema_docao.demo.entity.Doador;
 

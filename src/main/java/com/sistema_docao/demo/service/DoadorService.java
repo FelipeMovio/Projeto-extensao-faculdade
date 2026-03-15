@@ -1,18 +1,14 @@
 package com.sistema_docao.demo.service;
 
-import com.sistema_docao.demo.dto.request.DoadorAtualizaRequestDTO;
-import com.sistema_docao.demo.dto.request.DoadorCadastroRequestDTO;
-import com.sistema_docao.demo.dto.response.DoadorReadResponseDTO;
+import com.sistema_docao.demo.dto.sistema.request.DoadorAtualizaRequestDTO;
+import com.sistema_docao.demo.dto.sistema.request.DoadorCadastroRequestDTO;
+import com.sistema_docao.demo.dto.sistema.response.DoadorReadResponseDTO;
 import com.sistema_docao.demo.entity.Doador;
 import com.sistema_docao.demo.repository.DoadorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class DoadorService {
