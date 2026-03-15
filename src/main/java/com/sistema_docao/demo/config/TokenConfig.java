@@ -1,6 +1,8 @@
 package com.sistema_docao.demo.config;
 
 import com.sistema_docao.demo.entity.Usuario;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -10,9 +12,12 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import java.time.Instant;
 import java.util.Optional;
 
+// gera e valida token
 @Component
 public class TokenConfig {
-    private String secret = "secret";
+
+    @Value("${jwt.secret}")
+    private String secret;
 
     public String generateToken(Usuario user) {
         Algorithm algorithm = Algorithm.HMAC256(secret);
