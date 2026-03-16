@@ -24,13 +24,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 public class AuthController {
 
-    private UsuarioService service;
+    private final UsuarioService service;
 
 
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
 
-    private  TokenConfig tokenConfig;
+    private final TokenConfig tokenConfig;
 
     public AuthController(UsuarioService service, AuthenticationManager authenticationManager, TokenConfig tokenConfig) {
         this.service = service;
@@ -41,7 +41,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<RegisterResponseDto> register(@RequestBody @Valid RegisterRequestDto dto) {
         RegisterResponseDto user = service.register(dto);
-        return ResponseEntity.ok(user);
+        return ResponseEntity.status(201).body(user);
     }
 
     @PostMapping("/admin")
@@ -49,7 +49,7 @@ public class AuthController {
     public ResponseEntity<RegisterResponseDto> createAdmin(
             @RequestBody @Valid AdminCreateUserRequestDto dto) {
 
-        return ResponseEntity.ok(service.createAdmin(dto));
+        return ResponseEntity.status(201).body(service.createAdmin(dto));
     }
 
     @PostMapping("/login")
