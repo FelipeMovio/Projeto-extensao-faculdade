@@ -7,16 +7,12 @@ import java.util.List;
 
 public record DoadorReadResponseDTO(
         Long id,
-        String nome,
-        String email,
         String telefone,
         List<DoacaoResumoDTO> doacoes
 ) {
     public DoadorReadResponseDTO(Doador doador){
         this(
                 doador.getId(),
-                doador.getNome(),
-                doador.getEmail(),
                 doador.getTelefone(),
                 doador.getDoacoes().stream()
                         .map(DoacaoResumoDTO::new)
