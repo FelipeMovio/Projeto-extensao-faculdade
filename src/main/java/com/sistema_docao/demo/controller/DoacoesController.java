@@ -1,5 +1,6 @@
 package com.sistema_docao.demo.controller;
 
+import com.sistema_docao.demo.config.JWTUserData;
 import com.sistema_docao.demo.dto.sistema.request.DoacaoCadastroRequestDTO;
 import com.sistema_docao.demo.dto.sistema.response.DoacaoReadResponseDTO;
 import com.sistema_docao.demo.service.DoacoesService;
@@ -7,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,8 +22,11 @@ public class DoacoesController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> doar(@RequestBody DoacaoCadastroRequestDTO dto){
-        doacoesService.registrarDoacao(dto);
+    public ResponseEntity<Void> doar(
+            @AuthenticationPrincipal JWTUserData user,
+            @RequestBody DoacaoCadastroRequestDTO dto) {
+
+        doacoesService.registrarDoacao(user.userId(), dto);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

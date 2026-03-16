@@ -38,9 +38,10 @@ public class DoacoesService {
     }
 
     @Transactional
-    public void registrarDoacao(DoacaoCadastroRequestDTO dto) {
+    public void registrarDoacao(Long userId,DoacaoCadastroRequestDTO dto) {
 
-        Doador doador = doadorRepository.findById(dto.doadorId())
+        Doador doador = doadorRepository
+                .findByUsuarioId(userId)
                 .orElseThrow(() -> new RuntimeException("Doador não encontrado"));
 
         Doacao doacao = new Doacao();
