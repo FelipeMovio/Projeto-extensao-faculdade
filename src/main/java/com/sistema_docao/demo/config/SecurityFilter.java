@@ -20,7 +20,7 @@ import java.util.Optional;
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
 
-    private TokenConfig tokenConfig;
+    private final TokenConfig tokenConfig;
 
 
     public SecurityFilter(TokenConfig tokenConfig) {
