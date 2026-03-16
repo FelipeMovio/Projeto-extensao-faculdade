@@ -15,8 +15,8 @@ public record DoadorReadResponseDTO(
     public DoadorReadResponseDTO(Doador doador){
         this(
                 doador.getId(),
-                doador.getNome(),
-                doador.getEmail(),
+                doador.getUsuario().getNome(),
+                doador.getUsuario().getEmail(),
                 doador.getTelefone(),
                 doador.getDoacoes().stream()
                         .map(DoacaoResumoDTO::new)

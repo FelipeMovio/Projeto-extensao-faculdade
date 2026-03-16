@@ -1,5 +1,6 @@
 package com.sistema_docao.demo.controller;
 
+import com.sistema_docao.demo.config.JWTUserData;
 import com.sistema_docao.demo.dto.sistema.request.DoadorAtualizaRequestDTO;
 import com.sistema_docao.demo.dto.sistema.request.DoadorCadastroRequestDTO;
 import com.sistema_docao.demo.dto.sistema.response.DoadorReadResponseDTO;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,11 +24,6 @@ public class DoadorController {
         this.doadorService = doadorService;
     }
 
-    @PostMapping
-    public ResponseEntity<Void> cadastrar(@Valid @RequestBody DoadorCadastroRequestDTO dto){
-       doadorService.register(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-    }
 
     @GetMapping
     public ResponseEntity<Page<DoadorReadResponseDTO>> verTodos(Pageable pageable){
@@ -35,23 +32,23 @@ public class DoadorController {
         return ResponseEntity.ok(dto);
     }
 
-    @GetMapping("/{id}")
-    public  ResponseEntity<DoadorReadResponseDTO> verUm(@PathVariable Long id ){
-        DoadorReadResponseDTO dto = doadorService.getOne(id);
+    @GetMapping("/me/{id}")
+    public  ResponseEntity<DoadorReadResponseDTO> verUm(@AuthenticationPrincipal JWTUserData user){
+        DoadorReadResponseDTO dto = doadorService.getOne(user.userId());
 
         return ResponseEntity.ok(dto);
     }
 
-    @PatchMapping("/{id}")
-    public ResponseEntity<DoadorReadResponseDTO> editar(@PathVariable Long id, @RequestBody @Valid DoadorAtualizaRequestDTO dto ){
-        DoadorReadResponseDTO readResponseDTO = doadorService.atualizar(id, dto);
+    @PatchMapping("/me/{id}")
+    public ResponseEntity<DoadorReadResponseDTO> editar(@AuthenticationPrincipal JWTUserData user, @RequestBody @Valid DoadorAtualizaRequestDTO dto ){
+        DoadorReadResponseDTO readResponseDTO = doadorService.atualizar(user.userId(), dto);
 
         return ResponseEntity.ok(readResponseDTO);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluir(@PathVariable Long id ){
-        doadorService.excluir(id);
+    @DeleteMapping("/me/{id}")
+    public ResponseEntity<Void> excluir(@AuthenticationPrincipal JWTUserData user){
+        doadorService.excluir(user.userId());
 
         return ResponseEntity.noContent().build();
     }

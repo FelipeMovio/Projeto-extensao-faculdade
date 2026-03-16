@@ -20,16 +20,6 @@ public class DoadorService {
         this.doadorRepository = doadorRepository;
     }
 
-    @Transactional
-    public void register(DoadorCadastroRequestDTO dto){
-
-        Doador doador = new Doador();
-        doador.setNome(dto.nome());
-        doador.setEmail(dto.email());
-        doador.setTelefone(dto.telefone());
-
-        doadorRepository.saveAndFlush(doador);
-    }
 
 
     public Page<DoadorReadResponseDTO> getAll(Pageable paginacao){
@@ -38,9 +28,10 @@ public class DoadorService {
 
     }
 
-    public DoadorReadResponseDTO getOne(Long id){
-        Doador doador = doadorRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Doador não encontrado com id " + id));
+    public DoadorReadResponseDTO getOne(Long userId){
+        Doador doador = doadorRepository
+                .findByUsuarioId(userId)
+                .orElseThrow(() -> new RuntimeException("Doador não encontrado"));
 
         return new DoadorReadResponseDTO(doador);
 
@@ -48,14 +39,11 @@ public class DoadorService {
     }
 
     @Transactional
-    public DoadorReadResponseDTO atualizar(Long id,DoadorAtualizaRequestDTO dto){
-        Doador doador = doadorRepository.findById(id)
+    public DoadorReadResponseDTO atualizar(Long userId,DoadorAtualizaRequestDTO dto){
+        Doador doador = doadorRepository
+                .findByUsuarioId(userId)
                 .orElseThrow(() -> new RuntimeException("Doador não encontrado"));
-
-        if(dto.nome() != null){
-            doador.setNome(dto.nome());
-        }
-
+        
         if(dto.telefone() != null){
             doador.setTelefone(dto.telefone());
         }
@@ -67,8 +55,9 @@ public class DoadorService {
 
 
     @Transactional
-    public void excluir(Long id){
-        Doador doador = doadorRepository.findById(id)
+    public void excluir(Long userId){
+        Doador doador = doadorRepository
+                .findByUsuarioId(userId)
                 .orElseThrow(() -> new RuntimeException("Doador não encontrado"));
 
         doadorRepository.delete(doador);
