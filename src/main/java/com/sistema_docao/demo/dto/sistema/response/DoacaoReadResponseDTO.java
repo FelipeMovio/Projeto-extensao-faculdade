@@ -17,7 +17,7 @@ public record DoacaoReadResponseDTO(
         this(
                 doacao.getId(),
                 doacao.getDataCriacao(),
-                doacao.getDoador().getNome(),
+                doacao.getDoador().getUsuario().getNome(),
                 doacao.getItens()
                         .stream()
                         .map(DoacaoItemResumoDTO :: new)
