@@ -46,6 +46,7 @@ public class SecurityConfig {
                         .requestMatchers("/relatorios/**").hasRole("ADMIN")
                         .requestMatchers("/itens/**").hasAnyRole("DOADOR", "ADMIN")
                         .requestMatchers("/doadores/**").hasAnyRole("DOADOR", "ADMIN")
+                        .requestMatchers("/doacoes/**").hasAnyRole("DOADOR", "ADMIN")
                         .requestMatchers("/user/**").hasAnyRole("DOADOR", "ADMIN")
                         .anyRequest().authenticated()
                 )
