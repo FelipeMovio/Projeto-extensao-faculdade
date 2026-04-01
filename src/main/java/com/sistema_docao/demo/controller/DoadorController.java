@@ -32,21 +32,21 @@ public class DoadorController {
         return ResponseEntity.ok(dto);
     }
 
-    @GetMapping("/me/{id}")
+    @GetMapping("/me")
     public  ResponseEntity<DoadorReadResponseDTO> verUm(@AuthenticationPrincipal JWTUserData user){
         DoadorReadResponseDTO dto = doadorService.getOne(user.userId());
 
         return ResponseEntity.ok(dto);
     }
 
-    @PatchMapping("/me/{id}")
+    @PatchMapping("/me")
     public ResponseEntity<DoadorReadResponseDTO> editar(@AuthenticationPrincipal JWTUserData user, @RequestBody @Valid DoadorAtualizaRequestDTO dto ){
         DoadorReadResponseDTO readResponseDTO = doadorService.atualizar(user.userId(), dto);
 
         return ResponseEntity.ok(readResponseDTO);
     }
 
-    @DeleteMapping("/me/{id}")
+    @DeleteMapping("/me")
     public ResponseEntity<Void> excluir(@AuthenticationPrincipal JWTUserData user){
         doadorService.excluir(user.userId());
 

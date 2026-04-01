@@ -43,9 +43,13 @@ public class DoadorService {
         Doador doador = doadorRepository
                 .findByUsuarioId(userId)
                 .orElseThrow(() -> new RuntimeException("Doador não encontrado"));
-        
+
         if(dto.telefone() != null){
             doador.setTelefone(dto.telefone());
+        }
+
+        if(dto.nome() != null){
+            doador.getUsuario().setNome(dto.nome());
         }
 
         doadorRepository.save(doador);
