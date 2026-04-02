@@ -6,6 +6,8 @@ import com.sistema_docao.demo.entity.Doacao;
 import com.sistema_docao.demo.entity.DoacaoItem;
 import com.sistema_docao.demo.entity.Doador;
 import com.sistema_docao.demo.entity.Item;
+import com.sistema_docao.demo.exception.BusinessException;
+import com.sistema_docao.demo.exception.NotFoundException;
 import com.sistema_docao.demo.repository.DoacaoRepository;
 import com.sistema_docao.demo.repository.DoadorRepository;
 import com.sistema_docao.demo.repository.ItemRepository;
@@ -53,7 +55,7 @@ public class DoacoesService {
         for (var itemDTO : dto.itens()) {
 
             if (itemDTO.quantidade() <= 0) {
-                throw new IllegalArgumentException("Quantidade deve ser maior que zero");
+                throw new BusinessException("Quantidade deve ser maior que zero");
             }
 
             if (!itensProcessados.add(itemDTO.itemId())) {
@@ -62,7 +64,7 @@ public class DoacoesService {
 
 
             Item item = itemRepository.findById(itemDTO.itemId())
-                    .orElseThrow(() -> new RuntimeException("Item não encontrado"));
+                    .orElseThrow(() -> new NotFoundException("Item não encontrado"));
 
             DoacaoItem doacaoItem = new DoacaoItem();
             doacaoItem.setDoacao(doacao);

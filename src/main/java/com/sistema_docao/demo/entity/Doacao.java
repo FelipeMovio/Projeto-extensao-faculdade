@@ -29,6 +29,6 @@ public class Doacao {
     @JoinColumn(name = "doador_id", nullable = false)
     private Doador doador;
 
-    @OneToMany(mappedBy = "doacao", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "doacao", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DoacaoItem> itens;
 }

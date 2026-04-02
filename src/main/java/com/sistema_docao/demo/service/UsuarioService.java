@@ -35,6 +35,9 @@ public class UsuarioService {
     @Transactional
     public RegisterResponseDto register(RegisterRequestDto dto) {
 
+        if (usuarioRepository.findByEmail(dto.email()).isPresent()) {
+            throw new RuntimeException("E-mail já cadastrado!");
+        }
         Usuario user = Usuario.builder()
                 .nome(dto.nome())
                 .email(dto.email())
