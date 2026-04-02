@@ -17,9 +17,6 @@ public record RegisterRequestDto(
         String nome,
 
                 @NotBlank(message = "Telefone é obrigatório")
-        @Pattern(
-                regexp = "^\\(?\\d{2}\\)?\\s?9?\\d{4}-?\\d{4}$",
-                message = "Telefone inválido. Use formato (xx) xxxxx-xxxx"
-        )
+        @Pattern(regexp = "^\\d{10,11}$", message = "Telefone inválido")
                 String telefone
 ) {}

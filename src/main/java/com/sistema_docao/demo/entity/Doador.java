@@ -1,8 +1,7 @@
 package com.sistema_docao.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,6 +29,7 @@ public class Doador {
 
     private String telefone;
 
-    @OneToMany(mappedBy = "doador", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(mappedBy = "doador", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Doacao> doacoes;
 }

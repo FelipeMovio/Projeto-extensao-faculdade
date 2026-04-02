@@ -43,8 +43,10 @@ public class SecurityConfig {
                         .requestMatchers(                "/v3/api-docs/**",
                                 "/swagger-ui/**",
                                 "/swagger-ui.html").permitAll()
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/user/**").hasAnyRole("DOADOR", "ADMIN")
+                        .requestMatchers("/relatorios/**").hasRole("ADMIN")
+                        .requestMatchers("/itens/**").hasAnyRole("DOADOR", "ADMIN")
+                        .requestMatchers("/doadores/**").hasAnyRole("DOADOR", "ADMIN")
+                        .requestMatchers("/doacoes/**").hasAnyRole("DOADOR", "ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

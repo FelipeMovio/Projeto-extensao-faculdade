@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,7 @@ public class DoadorController {
     }
 
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public ResponseEntity<Page<DoadorReadResponseDTO>> verTodos(Pageable pageable){
         Page<DoadorReadResponseDTO> dto = doadorService.getAll(pageable);
@@ -32,21 +34,21 @@ public class DoadorController {
         return ResponseEntity.ok(dto);
     }
 
-    @GetMapping("/me/{id}")
+    @GetMapping("/me")
     public  ResponseEntity<DoadorReadResponseDTO> verUm(@AuthenticationPrincipal JWTUserData user){
         DoadorReadResponseDTO dto = doadorService.getOne(user.userId());
 
         return ResponseEntity.ok(dto);
     }
 
-    @PatchMapping("/me/{id}")
+    @PatchMapping("/me")
     public ResponseEntity<DoadorReadResponseDTO> editar(@AuthenticationPrincipal JWTUserData user, @RequestBody @Valid DoadorAtualizaRequestDTO dto ){
         DoadorReadResponseDTO readResponseDTO = doadorService.atualizar(user.userId(), dto);
 
         return ResponseEntity.ok(readResponseDTO);
     }
 
-    @DeleteMapping("/me/{id}")
+    @DeleteMapping("/me")
     public ResponseEntity<Void> excluir(@AuthenticationPrincipal JWTUserData user){
         doadorService.excluir(user.userId());
 

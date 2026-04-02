@@ -1,5 +1,6 @@
 package com.sistema_docao.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,6 +33,7 @@ public class Item {
 
     private Integer quantidadeEstoque;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "item")
     private List<DoacaoItem> doacoes;
 }

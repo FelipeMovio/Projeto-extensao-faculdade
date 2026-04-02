@@ -3,6 +3,7 @@ package com.sistema_docao.demo.controller;
 import com.sistema_docao.demo.dto.sistema.RelatorioItemDTO;
 import com.sistema_docao.demo.service.RelatorioService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,7 @@ public class RelatorioController {
         this.service = service;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/mensal")
     public ResponseEntity<List<RelatorioItemDTO>> gerarRelatorio(
             @RequestParam LocalDate inicio,
@@ -31,6 +33,7 @@ public class RelatorioController {
         return ResponseEntity.ok(dtosList);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/mensal/csv")
     public ResponseEntity<String> gerarCSV(
             @RequestParam LocalDate inicio,
@@ -45,6 +48,7 @@ public class RelatorioController {
                 .body(csv);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/mensal/pdf")
     public ResponseEntity<byte[]> gerarPDF(
             @RequestParam LocalDate inicio,
